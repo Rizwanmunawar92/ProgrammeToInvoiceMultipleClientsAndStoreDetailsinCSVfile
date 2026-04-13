@@ -15,18 +15,32 @@ try:
             clean_line = line.strip() # Step 1: Clean the line (remove the \n at the end)
 
             parts = clean_line.split(",") # Step 2: Split the line into a list of 5 pieces
+            if len(parts) == 5:
 
-            # parts[1] is the Client Name
-            # parts[4] is the Total Money
+                date = parts[0]
+                client = parts[1]
+                hours = parts[2]
+                amount = parts[4]
 
-            if parts[1].lower() == search_name.lower():
-                print(f"Date: {parts[0]} | Amount : £{parts[4]}")
-                grand_total +=float(parts[4])
+                # parts[1] is the Client Name
+                # parts[4] is the Total Money
+
+                if client.lower() == search_name.lower():
+                    print(f"Date: {parts[0]} | Hours Work: {parts[2]} |Amount : £ {parts[4]}")
+                
+                    try:
+                        grand_total +=float(parts[4])
+                    except ValueError:
+                        print(f"Skipping a row because the amount'{amount}' is not a number.")
+
+            else: # If a line has fewer than 5 parts, 'continue' skips to the next line
+                  continue
+    
 
 
     print("=" * 50)
     print("\n")
-    print(f"LIFETIME TOTAL FOR {search_name.upper()} : £{grand_total}")
+    print(f"LIFETIME TOTAL FOR {search_name.upper()} : £ {grand_total}")
     print("\n")
 
     print("=" * 50)

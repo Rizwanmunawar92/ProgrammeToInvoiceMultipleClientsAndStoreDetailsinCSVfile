@@ -23,6 +23,7 @@ try:
                 print(f"Date: {parts[0]} | Amount : £{parts[4]}")
                 grand_total +=float(parts[4])
 
+
     print("=" * 50)
     print("\n")
     print(f"LIFETIME TOTAL FOR {search_name.upper()} : £{grand_total}")
